@@ -1,25 +1,20 @@
-const {Sequelize,DataTypes}=require("sequelize")
+require("dotenv").config(); // <-- Load .env variables at the top
 
+const { Sequelize, DataTypes } = require("sequelize");
 
-
-const sequelize = new Sequelize("postgresql://postgres.rtelxkdpogfollqvnwxb:jaishreeram@aws-0-ap-south-1.pooler.supabase.com:6543/postgres"
-)
-
-
+// Use the connection string from .env
+const sequelize = new Sequelize(process.env.DB_URL);
 
 sequelize.authenticate()
-.then(()=>{
-    console.log("Authenticated and connected")
-})
-.catch((err)=>{
-    console.log("Err0r"+ err)
-})
+  .then(() => {
+    console.log("Authenticated and connected");
+  })
+  .catch((err) => {
+    console.log("Err0r: " + err);
+  });
 
+const db = {};
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
-const db={}
-db.Sequelize=sequelize
-db.sequelize=sequelize
-
-module.exports=db
-
-
+module.exports = db;
