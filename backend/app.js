@@ -1,13 +1,15 @@
 
 let express =require("express")
+const { books } = require("./database/connection")
 const app = express()
 
 require("./database/connection")
 
 
 
-app.get('/books', (req, res) => {
+app.get('/books',async (req, res) => {
   //logic 
+  const datas= await books.findAll()
   res.json({
     message:"Books fetched",
     
@@ -17,6 +19,7 @@ app.get('/books', (req, res) => {
 
 
 app.post("/books",(req,res)=>{
+  
   res.json({
     message:"books uplaoaded Successfully"
   })

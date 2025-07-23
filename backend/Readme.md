@@ -1,5 +1,6 @@
 
 install sequalize for orm
-abd og for postgress driver
+abd 
+pg for postgress driver
 
 
